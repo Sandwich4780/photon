@@ -13,6 +13,8 @@ void createTriangleNoVertex(triangle* out, const float p1X, const float p1Y, con
     createVertex2(&(out->p3), p3X, p3Y);
 }
 
+// ALL OF THESE FOLLOWING FUNCS ARE TEMPORARY!!!!!
+
 // List (array) should have 8 members (list[8])
 void createCubeVerticies(vertex3* list, const vertex3 lower, const vertex3 upper) {
     vertex3 diff;

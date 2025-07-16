@@ -13,7 +13,7 @@ void updateScreen(SDL_Renderer* renderer, SDL_Texture* texture, int windowWidth,
     Uint32* pixels = (Uint32*)buffer;
 
     // DRAW PIXELS HERE
-
+    /*
     float fFar = 1000.f;
     float fNear = 0.1f;
     float fov = 90.f;
@@ -44,6 +44,13 @@ void updateScreen(SDL_Renderer* renderer, SDL_Texture* texture, int windowWidth,
 
     for (int i = 0; i < 12; i++)
         draw2dTriangle(pixels, windowWidth, windowHeight, &(triangleList[i]), 255, 255, 255, 255);
+
+    */
+
+    triangle tri;
+    createTriangleNoVertex(&tri, 100, 350, 250, 50, 350, 300);
+
+    draw2dTriangle(pixels, windowWidth, windowHeight, &tri, 255, 255, 255, 255);
 
     SDL_UnlockTexture(texture);
     SDL_RenderClear(renderer);
