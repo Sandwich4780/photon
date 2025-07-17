@@ -1,11 +1,11 @@
-typedef struct vertex2 {
+typedef struct p_vec2 {
     float x, y;
-} vertex2;
+} p_vec2;
 
-void createVertex2(vertex2*, const float, const float);
+void p_createVec2(p_vec2*, float, float);
 
-typedef struct vertex3 {
+typedef struct p_vec3 {
     float x, y, z; // The y component is the vertical one, not z
-} vertex3;
+} p_vec3;
 
-void createVertex3(vertex3*, const float, const float, const float);
+void p_createVec3(p_vec3*, float, float, float);

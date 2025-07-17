@@ -1,10 +1,8 @@
 #include "vertex.h"
 
-typedef struct triangle {
-    vertex2 p1, p2, p3;
-} triangle;
+typedef struct p_triangle {
+    p_vec2 p1, p2, p3;
+} p_triangle;
 
-void createTriangle(triangle*, const vertex2, const vertex2, const vertex2);
-void createTriangleNoVertex(triangle*, const float, const float, const float, const float, const float, const float);
-void createCubeVerticies(vertex3*, const vertex3, const vertex3);
-void generateTrianglesFromCube(vertex3*, triangle*);
+void p_createTriangle(p_triangle*, p_vec2, p_vec2, p_vec2);
+void p_createTriangleNoVec(p_triangle*, float, float, float, float, float, float);

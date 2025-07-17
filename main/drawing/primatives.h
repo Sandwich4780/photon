@@ -3,7 +3,7 @@
 #include "../types/matrix.h"
 #include "../math/photon_math.h"
 
-void colorPixel(Uint32*, int, int, int, Uint8, Uint8, Uint8, Uint8);
-void drawLine(Uint32*, const int, const int, const vertex2, const vertex2, Uint8, Uint8, Uint8, Uint8);
-void drawTriangle(Uint32*, const int, const int, const triangle*, Uint8, Uint8, Uint8, Uint8);
-void perspectiveTransform(const vertex3, vertex3*, const p_matrix4x4*, const int, const int);
+void p_colorPixel(Uint32*, int, int, int, Uint8, Uint8, Uint8, Uint8);
+void p_drawLine(Uint32*, int, int, p_vec2, p_vec2, Uint8, Uint8, Uint8, Uint8);
+void p_drawTriangle(Uint32*, int, int, p_triangle*, Uint8, Uint8, Uint8, Uint8);
+void p_perspectiveTransform(p_vec3, p_vec3*, p_matrix4x4*, int, int);

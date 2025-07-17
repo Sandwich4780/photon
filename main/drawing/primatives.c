@@ -1,12 +1,12 @@
 #include "primatives.h"
 
 // Color values should be from 0 to 255
-void colorPixel(Uint32* pixels, int windowWidth, int x, int y, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+void p_colorPixel(Uint32* pixels, int windowWidth, int x, int y, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
     pixels[y * windowWidth + x] = (Uint32)((r << 24) | (g << 16) | (b << 8) | a); // RGBA32 type used here
 }
 
 // Bresenham's line algorithm implementation
-void drawLine(Uint32* pixels, const int windowWidth, const int windowHeight, const vertex2 start, const vertex2 end, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+void p_drawLine(Uint32* pixels, int windowWidth, int windowHeight, p_vec2 start, p_vec2 end, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
     int x = (int)start.x;
     int y = (int)start.y;
     int ex = (int)end.x;
@@ -21,7 +21,7 @@ void drawLine(Uint32* pixels, const int windowWidth, const int windowHeight, con
 
     while (true) {
         if (x > 0 && x < windowWidth && y > 0 && y < windowHeight) // Make sure the pixel is in bounds
-            colorPixel(pixels, windowWidth, x, y, r, g, b, a);
+            p_colorPixel(pixels, windowWidth, x, y, r, g, b, a);
 
         int error2 = 2 * error;
 
@@ -44,15 +44,15 @@ void drawLine(Uint32* pixels, const int windowWidth, const int windowHeight, con
 }
 
 // Passing the exact same params this many times is prob not very optimized...
-void drawTriangle(Uint32* pixels, const int windowWidth, const int windowHeight, const triangle* theTriangle, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
-    drawLine(pixels, windowWidth, windowHeight, theTriangle->p1, theTriangle->p2, r, g, b, a);
-    drawLine(pixels, windowWidth, windowHeight, theTriangle->p2, theTriangle->p3, r, g, b, a);
-    drawLine(pixels, windowWidth, windowHeight, theTriangle->p3, theTriangle->p1, r, g, b, a);
+void p_drawTriangle(Uint32* pixels, int windowWidth, int windowHeight, p_triangle* theTriangle, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+    p_drawLine(pixels, windowWidth, windowHeight, theTriangle->p1, theTriangle->p2, r, g, b, a);
+    p_drawLine(pixels, windowWidth, windowHeight, theTriangle->p2, theTriangle->p3, r, g, b, a);
+    p_drawLine(pixels, windowWidth, windowHeight, theTriangle->p3, theTriangle->p1, r, g, b, a);
 }
 
 // Essentially converts 3d verticies into 2d points; this could prob be far more optimized but I'm just implementing it so it exists
 // Ignore the z component (it's there cuz I'm still learning stuff yk)
-void perspectiveTransform(const vertex3 in, vertex3* out, const p_matrix4x4* matrix, const int windowWidth, const int windowHeight) {
+void p_perspectiveTransform(p_vec3 in, p_vec3* out, p_matrix4x4* matrix, int windowWidth, int windowHeight) {
     out->x = in.x * matrix->mat[0];
     out->y = in.y * matrix->mat[5];
     out->z = in.z * matrix->mat[10] + matrix->mat[11];

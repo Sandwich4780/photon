@@ -1,3 +1,4 @@
+#include "../pipeline/geometry.h"
 #include "../pipeline/rasterizer.h"
 
-void updateScreen(SDL_Renderer*, SDL_Texture*, int, int);
+void p_updateScreen(SDL_Renderer*, SDL_Texture*, int, int);

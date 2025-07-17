@@ -1,7 +1,7 @@
 #include "rasterizer.h"
 
 // This returns the doubled area of three triangles. DO NOT USE FOR ACTUAL AREA OF POLYGONS!!!
-void getTestPolygonArea(int testX, int testY, triangle* tri, int* output) {
+void p_getTestPolygonArea(int testX, int testY, p_triangle* tri, int* output) {
     // Shoelace formula :)
     // TODO: Make this do everything with ints later on to speed things up
     *output = abs((testX - tri->p3.x) * (tri->p2.y - testY) - (testX - tri->p2.x) * (tri->p3.y - testY));
@@ -10,7 +10,7 @@ void getTestPolygonArea(int testX, int testY, triangle* tri, int* output) {
 }
 
 // TODO: Make a version of this to use given textures (not needed for a LONG time tho)
-void rasterizeTriangle(Uint32* pixels, const int windowWidth, const int windowHeight, triangle* tri, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+void p_rasterizeTriangle(Uint32* pixels, int windowWidth, int windowHeight, p_triangle* tri, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
     int boundingXMin = windowWidth;
     int boundingYMin = windowHeight;
     int boundingXMax = 0;
@@ -43,10 +43,10 @@ void rasterizeTriangle(Uint32* pixels, const int windowWidth, const int windowHe
             if (y < 0 || y > windowHeight)
                 continue;
 
-            getTestPolygonArea(x, y, tri, &testArea);
+            p_getTestPolygonArea(x, y, tri, &testArea);
 
             if (testArea <= triangleArea) // Pixel is inside the triangle
-                colorPixel(pixels, windowWidth, x, y, r, g, b, a);
+                p_colorPixel(pixels, windowWidth, x, y, r, g, b, a);
         }
     }
 }

@@ -1,4 +1,4 @@
 1. Make sure SDL2 is installed (see the SDL2 wiki to do that)
 2. Open a console at the directory of the src (specifically in the directory where window_create.c is)
-3. Run the command: gcc window_create.c main/drawing/main_renderer.c main/drawing/primatives.c main/types/triangle.c main/types/vertex.c main/pipeline/rasterizer.c -lm -o photon `sdl2-config --cflags --libs`
+3. Run the command: gcc window_create.c main/drawing/main_renderer.c main/drawing/primatives.c main/types/triangle.c main/types/vertex.c main/pipeline/rasterizer.c main/pipeline/geometry.c -lm -o photon `sdl2-config --cflags --libs`
 4. Run the command: ./photon in the same console used before

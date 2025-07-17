@@ -1,7 +1,7 @@
 #include "main_renderer.h"
 #include <stdio.h>
 
-void updateScreen(SDL_Renderer* renderer, SDL_Texture* texture, int windowWidth, int windowHeight) {
+void p_updateScreen(SDL_Renderer* renderer, SDL_Texture* texture, int windowWidth, int windowHeight) {
     if (!renderer || !texture)
         return;
 
@@ -31,29 +31,29 @@ void updateScreen(SDL_Renderer* renderer, SDL_Texture* texture, int windowWidth,
     matr.mat[11] = -fNear * scaleFactor;
     matr.mat[14] = 1.f;
 
-    vertex3 a;
-    createVertex3(&a, -1.f, -0.5f, 2.f);
-    vertex3 b;
-    createVertex3(&b, 0.f, 0.5f, 3.f);
+    p_vec3 a;
+    p_createVec3(&a, -1.f, -0.5f, 2.f);
+    p_vec3 b;
+    p_createVec3(&b, 0.f, 0.5f, 3.f);
 
-    vertex3 vertexList[8];
-    createCubeVerticies(vertexList, a, b);
+    p_vec3 vertexList[8];
+    p_createCubeVerticies(vertexList, a, b);
 
     for (int i = 0; i < 8; i++)
-        perspectiveTransform(vertexList[i], &(vertexList[i]), &matr, windowWidth, windowHeight);
+        p_perspectiveTransform(vertexList[i], &(vertexList[i]), &matr, windowWidth, windowHeight);
 
-    triangle triangleList[12];
-    generateTrianglesFromCube(vertexList, triangleList);
+    p_triangle triangleList[12];
+    p_generateTrianglesFromCube(vertexList, triangleList);
 
     for (int i = 0; i < 12; i++) {
-        drawTriangle(pixels, windowWidth, windowHeight, &(triangleList[i]), 255, 255, 255, 255);
-        //rasterizeTriangle(pixels, windowWidth, windowHeight, &(triangleList[i]), 255, 255, 255, 255);
+        p_drawTriangle(pixels, windowWidth, windowHeight, &(triangleList[i]), 255, 255, 255, 255);
+        //p_rasterizeTriangle(pixels, windowWidth, windowHeight, &(triangleList[i]), 255, 255, 255, 255);
     }
 
 
 
-    //triangle tri;
-    //createTriangleNoVertex(&tri, 100, 350, 250, 50, 350, 300);
+    //p_triangle tri;
+    //p_createTriangleNoVertex(&tri, 100, 350, 250, 50, 350, 300);
 
     SDL_UnlockTexture(texture);
     SDL_RenderClear(renderer);
