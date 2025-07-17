@@ -6,8 +6,7 @@ void colorPixel(Uint32* pixels, int windowWidth, int x, int y, Uint8 r, Uint8 g,
 }
 
 // Bresenham's line algorithm implementation
-// TODO: Add a check to stop drawing the line when out of screen bounds
-void draw2dLine(Uint32* pixels, const int windowWidth, const int windowHeight, const vertex2 start, const vertex2 end, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+void drawLine(Uint32* pixels, const int windowWidth, const int windowHeight, const vertex2 start, const vertex2 end, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
     int x = (int)start.x;
     int y = (int)start.y;
     int ex = (int)end.x;
@@ -45,10 +44,10 @@ void draw2dLine(Uint32* pixels, const int windowWidth, const int windowHeight, c
 }
 
 // Passing the exact same params this many times is prob not very optimized...
-void draw2dTriangle(Uint32* pixels, const int windowWidth, const int windowHeight, const triangle* theTriangle, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
-    draw2dLine(pixels, windowWidth, windowHeight, theTriangle->p1, theTriangle->p2, r, g, b, a);
-    draw2dLine(pixels, windowWidth, windowHeight, theTriangle->p2, theTriangle->p3, r, g, b, a);
-    draw2dLine(pixels, windowWidth, windowHeight, theTriangle->p3, theTriangle->p1, r, g, b, a);
+void drawTriangle(Uint32* pixels, const int windowWidth, const int windowHeight, const triangle* theTriangle, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+    drawLine(pixels, windowWidth, windowHeight, theTriangle->p1, theTriangle->p2, r, g, b, a);
+    drawLine(pixels, windowWidth, windowHeight, theTriangle->p2, theTriangle->p3, r, g, b, a);
+    drawLine(pixels, windowWidth, windowHeight, theTriangle->p3, theTriangle->p1, r, g, b, a);
 }
 
 // Essentially converts 3d verticies into 2d points; this could prob be far more optimized but I'm just implementing it so it exists

@@ -1,3 +1,4 @@
 #include "../drawing/primatives.h"
 
-void rasterizeTriangle(Uint32*, triangle*, const int, const int, Uint8, Uint8, Uint8, Uint8);
+void getTestPolygonArea(int, int, triangle*, int*);
+void rasterizeTriangle(Uint32*, const int, const int, triangle*, Uint8, Uint8, Uint8, Uint8);
