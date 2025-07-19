@@ -1,2 +1,2 @@
 #include <math.h>
-#define PI 3.1415927
+#define P_PI 3.1415927

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "main/drawing/main_renderer.h"
+#include "main/main_renderer.h"
 
 #define DEFAULT_WINDOW_WIDTH 500
 #define DEFAULT_WINDOW_HEIGHT 500
@@ -39,7 +39,7 @@ int main() {
             case SDL_QUIT:
                 shutdownPhoton(texture, renderer, window);
                 return 0;
-            case SDL_WINDOWEVENT: // Whenever the window is resized, we gotta create a new texture w the new size
+            case SDL_WINDOWEVENT: // Whenever the window is resized we gotta create a new texture w the new size
                 if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
                     windowWidth = event.window.data1;
                     windowHeight = event.window.data2;
@@ -53,7 +53,7 @@ int main() {
             }
         }
 
-        updateScreen(renderer, texture, windowWidth, windowHeight); // Main drawing func!!!!!
+        p_updateScreen(renderer, texture, windowWidth, windowHeight); // Main drawing func!!!!!
 
         // Clunky fps limiter
         if (SDL_GetTicks64() - timeLog < MS_PER_FRAME)

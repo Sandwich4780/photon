@@ -1,8 +1,9 @@
 #include "primatives.h"
 
 // Color values should be from 0 to 255
+// TODO: Figure out why alpha isn't changing opacity at all
 void p_colorPixel(Uint32* pixels, int windowWidth, int x, int y, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
-    pixels[y * windowWidth + x] = (Uint32)((r << 24) | (g << 16) | (b << 8) | a); // RGBA32 type used here
+    pixels[y * windowWidth + x] = (Uint32)((a << 24) | (b << 16) | (g << 8) | r); // RGBA32 type used here
 }
 
 // Bresenham's line algorithm implementation
@@ -48,29 +49,4 @@ void p_drawTriangle(Uint32* pixels, int windowWidth, int windowHeight, p_triangl
     p_drawLine(pixels, windowWidth, windowHeight, theTriangle->p1, theTriangle->p2, r, g, b, a);
     p_drawLine(pixels, windowWidth, windowHeight, theTriangle->p2, theTriangle->p3, r, g, b, a);
     p_drawLine(pixels, windowWidth, windowHeight, theTriangle->p3, theTriangle->p1, r, g, b, a);
-}
-
-// Essentially converts 3d verticies into 2d points; this could prob be far more optimized but I'm just implementing it so it exists
-// Ignore the z component (it's there cuz I'm still learning stuff yk)
-void p_perspectiveTransform(p_vec3 in, p_vec3* out, p_matrix4x4* matrix, int windowWidth, int windowHeight) {
-    out->x = in.x * matrix->mat[0];
-    out->y = in.y * matrix->mat[5];
-    out->z = in.z * matrix->mat[10] + matrix->mat[11];
-    float w = in.z * matrix->mat[14];
-
-    // Divides by the depth (futher objects become smaller than closer ones)
-    if (w != 0) {
-        out->x /= w;
-        out->y /= w;
-        out->z /= w;
-    }
-
-    // Gives an output (per coordinate) between -1 and 1, so we change it to between 0 and 2
-    out->x += 1;
-    out->y += 1;
-
-    // Now convert to actual screen coords
-    out->x *= (float)windowWidth / 2.f;
-    out->y *= (float)windowHeight / 2.f;
-    out->y = (float)windowHeight - out->y; // Y is flipped for some reason
 }
